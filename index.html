@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Disney Adventure — 2-Day Family Itinerary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8B84B;
+    --gold-light: #FDF3D8;
+    --purple: #3C3489;
+    --purple-light: #EEEDFE;
+    --teal: #085041;
+    --teal-light: #E1F5EE;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --amber: #633806;
+    --amber-light: #FFF3DC;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --green-light: #EAF3DE;
+    --green-dark: #27500A;
+    --ink: #1A1209;
+    --ink-mid: #5A4F3A;
+    --ink-light: #9A8F7A;
+    --cream: #FDFAF4;
+    --cream-dark: #F5EFE0;
+    --paper: #FAF6EE;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(232,184,75,0.04) 40px,
+      rgba(232,184,75,0.04) 41px
+    );
+  }
+  .stars {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .site-header h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .header-meta {
+    margin-top: 1.2rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .header-pills {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.4rem;
+  }
+  .pill {
+    background: rgba(232,184,75,0.15);
+    border: 1px solid rgba(232,184,75,0.3);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 99px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── NAV TABS ── */
+  .day-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .day-tab {
+    padding: 0.9rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .day-tab:hover { color: rgba(255,255,255,0.75); }
+  .day-tab.active-dl { color: #A89AEF; border-bottom-color: #A89AEF; }
+  .day-tab.active-ca { color: #4DCAA5; border-bottom-color: #4DCAA5; }
+
+  /* ── MAIN LAYOUT ── */
+  .day-page { display: none; }
+  .day-page.visible { display: block; }
+
+  .page-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  /* ── LL STRATEGY BANNER ── */
+  .ll-banner {
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2.5rem;
+    border-left: 4px solid;
+  }
+  .ll-banner.purple { background: var(--purple-light); border-color: var(--purple); }
+  .ll-banner.teal   { background: var(--teal-light);   border-color: var(--teal); }
+  .ll-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .ll-banner.purple .ll-label { color: var(--purple); }
+  .ll-banner.teal   .ll-label { color: var(--teal); }
+  .ll-banner p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .ll-banner.purple p { color: #3C3489; }
+  .ll-banner.teal   p { color: #085041; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin: 2.2rem 0 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cream-dark);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 68px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--cream-dark);
+  }
+
+  .event {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 0 20px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .event::before {
+    content: '';
+    position: absolute;
+    left: 62px;
+    top: 18px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--cream);
+    z-index: 1;
+  }
+  .event.normal::before { background: var(--ink-light); }
+  .event.highlight::before { background: var(--gold); border-color: var(--cream); }
+  .event.hotel::before { background: #E8A23A; }
+
+  .event-time {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-light);
+    text-align: right;
+    padding-top: 15px;
+    line-height: 1.3;
+  }
+
+  .event-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px;
+    padding: 14px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .event-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .event-card.hotel-card {
+    background: var(--amber-light);
+    border-color: rgba(232,162,58,0.3);
+  }
+
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .hotel-card .event-title { color: var(--amber); }
+
+  .event-desc {
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: var(--ink-mid);
+  }
+  .hotel-card .event-desc { color: #7A5020; }
+
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 99px;
+    letter-spacing: 0.02em;
+  }
+  .tag-purple { background: var(--purple-light); color: var(--purple); }
+  .tag-teal   { background: var(--teal-light);   color: var(--teal); }
+  .tag-amber  { background: #FFF3DC; color: var(--amber); }
+  .tag-coral  { background: var(--coral-light);  color: var(--coral); }
+  .tag-blue   { background: var(--blue-light);   color: var(--blue-dark); }
+  .tag-green  { background: var(--green-light);  color: var(--green-dark); }
+  .tag-gold   { background: #FDF3D8; color: #7A5A10; }
+  .tag-dark   { background: #EBEBEB; color: #444; }
+
+  /* ── TIPS SECTION ── */
+  .tips-section {
+    background: var(--ink);
+    padding: 3rem 1.5rem;
+    margin-top: 0;
+  }
+  .tips-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .tips-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .tip-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+  }
+  .tip-card-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tip-card-label.purple { color: #A89AEF; }
+  .tip-card-label.teal   { color: #4DCAA5; }
+  .tip-card-label.amber  { color: var(--gold); }
+  .tip-card-label.coral  { color: #F09575; }
+  .tip-card p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+  }
+  .tip-card strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .event { animation: fadeUp 0.4s ease both; }
+  .event:nth-child(1)  { animation-delay: 0.05s; }
+  .event:nth-child(2)  { animation-delay: 0.10s; }
+  .event:nth-child(3)  { animation-delay: 0.15s; }
+  .event:nth-child(4)  { animation-delay: 0.20s; }
+  .event:nth-child(5)  { animation-delay: 0.25s; }
+  .event:nth-child(6)  { animation-delay: 0.30s; }
+  .event:nth-child(7)  { animation-delay: 0.35s; }
+  .event:nth-child(8)  { animation-delay: 0.40s; }
+  .event:nth-child(9)  { animation-delay: 0.45s; }
+  .event:nth-child(10) { animation-delay: 0.50s; }
+  .event:nth-child(11) { animation-delay: 0.55s; }
+  .event:nth-child(12) { animation-delay: 0.60s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .timeline::before { left: 54px; }
+    .event { grid-template-columns: 54px 1fr; gap: 0 12px; }
+    .event::before { left: 48px; }
+    .event-time { font-size: 0.68rem; padding-top: 16px; }
+    .day-tab { padding: 0.9rem 1.2rem; font-size: 0.75rem; }
+    .page-inner { padding: 1.5rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="stars">✦ &nbsp; Family Trip &nbsp; ✦</span>
+  <h1>Our <em>Disney</em><br>Adventure</h1>
+  <p class="header-meta">Anaheim, California &nbsp;·&nbsp; 2 Parks &nbsp;·&nbsp; 2 Days</p>
+  <div class="header-pills">
+    <span class="pill">2 Adults</span>
+    <span class="pill">7 Kids · Ages 4–12</span>
+    <span class="pill">On-Site Hotel</span>
+    <span class="pill">Lightning Lane</span>
+  </div>
+</header>
+
+<nav class="day-nav">
+  <div class="day-tab active-dl" id="tab-dl" onclick="switchDay('dl')">Day 1 &nbsp;·&nbsp; Disneyland</div>
+  <div class="day-tab" id="tab-ca" onclick="switchDay('ca')">Day 2 &nbsp;·&nbsp; California Adventure</div>
+</nav>
+
+<!-- ═══════════════════════════════════ DAY 1 ═══════════════════════════════════ -->
+<div class="day-page visible" id="day-dl">
+  <div class="page-inner">
+
+    <div class="ll-banner purple">
+      <div class="ll-label">⚡ Lightning Lane Strategy — Disneyland Day</div>
+      <p>At <strong>7:00am sharp</strong>: Book <strong>Indiana Jones</strong> first. Then chain: Space Mountain → Matterhorn → Peter Pan's Flight. Buy <strong>Rise of the Resistance</strong> as Individual LL (paid separately). Rebook every single time you tap in — don't wait until you're off the ride.</p>
+    </div>
+
+    <div class="section-label">Early Morning</div>
+    <div class="timeline">
+
+      <div class="event normal">
+        <div class="event-time">7:00 am</div>
+        <div class="event-card">
+          <div class="event-title">Book Lightning Lane from the hotel</div>
+          <div class="event-desc">Before breakfast, open the Disneyland app and lock in Indiana Jones LL at 7am sharp. On-site guests may also have Early Entry — check the app. If yes, use those 30 min on Peter Pan's Flight and it's a small world.</div>
+          <div class="event-tags"><span class="tag tag-purple">Do this first</span><span class="tag tag-purple">LL priority</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">7:30 am</div>
+        <div class="event-card">
+          <div class="event-title">Hotel breakfast + gear up</div>
+          <div class="event-desc">Eat at the hotel — way faster than park dining for a group of 9. Pack sunscreen, water bottles, snacks, and stroller gear. Walk to the park entrance at 7:45.</div>
+          <div class="event-tags"><span class="tag tag-green">Fuel up</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">8:00 am</div>
+        <div class="event-card">
+          <div class="event-title">Rope drop — Fantasyland sweep</div>
+          <div class="event-desc">Head straight to Fantasyland. Peter Pan's Flight (LL or Early Entry), it's a small world, Dumbo, and Mad Tea Party — near-zero waits in the first 45 min. Castle photo on the way in.</div>
+          <div class="event-tags"><span class="tag tag-teal">All ages</span><span class="tag tag-purple">LL: Peter Pan</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">9:00 am</div>
+        <div class="event-card">
+          <div class="event-title">Character meets — Town Square</div>
+          <div class="event-desc">Mickey, Minnie & friends appear near the Main Street train station. Check the app for exact times. Budget 30–40 min — this is the emotional highlight for the youngest kids. Don't rush it.</div>
+          <div class="event-tags"><span class="tag tag-coral">Character magic</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">9:45 am</div>
+        <div class="event-card">
+          <div class="event-title">Matterhorn Bobsleds + Buzz Lightyear</div>
+          <div class="event-desc">Matterhorn (LL, height 35") while waits are still short. Then Buzz Lightyear Astro Blasters — all ages, laser blasters, everyone competes. A great energy-builder before the morning's big ride.</div>
+          <div class="event-tags"><span class="tag tag-blue">Thrills</span><span class="tag tag-purple">LL: Matterhorn</span><span class="tag tag-dark">Height 35"</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">10:45 am</div>
+        <div class="event-card">
+          <div class="event-title">Indiana Jones Adventure</div>
+          <div class="event-desc">Use LL — standby hits 70+ min by now. Height 46". Rider swap for the youngest. One of the greatest theme park rides ever built. Don't skip it under any circumstances.</div>
+          <div class="event-tags"><span class="tag tag-coral">Must-do</span><span class="tag tag-purple">LL</span><span class="tag tag-dark">Height 46"</span></div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <div class="section-label">Midday Hotel Break</div>
+    <div class="timeline">
+      <div class="event hotel">
+        <div class="event-time">12:00 pm</div>
+        <div class="event-card hotel-card">
+          <div class="event-title">Back to the hotel — rest & recharge</div>
+          <div class="event-desc">Walk back for 90 min. Youngest kids nap. Everyone refills water, reapplies sunscreen, changes clothes if needed. Adults breathe. This is your secret weapon — most families simply can't do this.</div>
+          <div class="event-tags"><span class="tag tag-amber">On-site advantage</span><span class="tag tag-amber">90 min break</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Afternoon</div>
+    <div class="timeline">
+
+      <div class="event highlight">
+        <div class="event-time">1:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Star Wars: Galaxy's Edge</div>
+          <div class="event-desc">Millennium Falcon: Smugglers Run — all ages, everyone has a job (pilot, engineer, gunner). Then Rise of the Resistance (Individual LL, buy separately) for older kids — nothing like it anywhere in any theme park.</div>
+          <div class="event-tags"><span class="tag tag-coral">Epic</span><span class="tag tag-purple">ILL: Rise of Resistance</span><span class="tag tag-teal">All ages on Falcon</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">3:00 pm</div>
+        <div class="event-card">
+          <div class="event-title">Space Mountain</div>
+          <div class="event-desc">Use LL (height 40"). Rider swap for under-40" kids. Afternoon is great timing — you've already knocked out the highest-wait rides this morning with LL.</div>
+          <div class="event-tags"><span class="tag tag-blue">Thrills</span><span class="tag tag-purple">LL</span><span class="tag tag-dark">Height 40"</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">3:45 pm</div>
+        <div class="event-card">
+          <div class="event-title">Pirates of the Caribbean + Haunted Mansion</div>
+          <div class="event-desc">Two all-ages classics in New Orleans Square, back to back. No height requirement. Haunted Mansion is spooky-fun for ages 5+ — almost every kid loves it. Crowds ease considerably in late afternoon.</div>
+          <div class="event-tags"><span class="tag tag-teal">All ages</span><span class="tag tag-dark">No height req</span><span class="tag tag-purple">Disney classics</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label">Evening</div>
+    <div class="timeline">
+
+      <div class="event normal">
+        <div class="event-time">5:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Dinner — River Belle Terrace</div>
+          <div class="event-desc">Walk-up friendly for big groups, great views over the Rivers of America. Or reserve Blue Bayou (inside Pirates) weeks ahead for a truly magical candlelit dinner experience worth the splurge.</div>
+          <div class="event-tags"><span class="tag tag-green">Dinner</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">7:00 pm</div>
+        <div class="event-card">
+          <div class="event-title">Main Street Electrical Parade or Mickey's Mix Magic</div>
+          <div class="event-desc">Check the app — one or both may be running on your visit. Grab a Main Street curb spot 30–40 min early. The whole family will be talking about this for the entire drive home.</div>
+          <div class="event-tags"><span class="tag tag-coral">Don't miss</span><span class="tag tag-amber">Arrive 30 min early</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">8:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Fantasmic! — then walk home</div>
+          <div class="event-desc">28-min water, fire & projections spectacular at Rivers of America amphitheater. Arrive 30 min early for good seats. Then walk straight back to the hotel — kids will likely be asleep before you reach the room.</div>
+          <div class="event-tags"><span class="tag tag-purple">Grand finale</span><span class="tag tag-amber">Arrive early</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /page-inner -->
+</div><!-- /day-dl -->
+
+<!-- ═══════════════════════════════════ DAY 2 ═══════════════════════════════════ -->
+<div class="day-page" id="day-ca">
+  <div class="page-inner">
+
+    <div class="ll-banner teal">
+      <div class="ll-label">⚡ Lightning Lane Strategy — California Adventure Day</div>
+      <p>At <strong>7:00am sharp</strong>: Book <strong>Radiator Springs Racers</strong> first — it sells out faster than any ride at either park, sometimes within minutes. Then chain: Guardians of the Galaxy → Web-Slingers → Incredicoaster → Soarin' → Toy Story Midway Mania. Rebook after every tap-in.</p>
+    </div>
+
+    <div class="section-label">Early Morning</div>
+    <div class="timeline">
+
+      <div class="event normal">
+        <div class="event-time">7:00 am</div>
+        <div class="event-card">
+          <div class="event-title">Book Radiator Springs Racers LL from hotel</div>
+          <div class="event-desc">The most time-sensitive LL booking at either park — it can sell out within minutes of 7am. Do this before you do anything else. Before breakfast. Before getting dressed if needed.</div>
+          <div class="event-tags"><span class="tag tag-teal">Do this first</span><span class="tag tag-coral">Sells out fast</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">7:30 am</div>
+        <div class="event-card">
+          <div class="event-title">Hotel breakfast + pack up</div>
+          <div class="event-desc">Eat at the hotel for speed and savings. Crucially: pack ponchos or a full change of clothes for every family member — you will need them after Grizzly River Run this afternoon.</div>
+          <div class="event-tags"><span class="tag tag-green">Fuel up</span><span class="tag tag-amber">Pack dry clothes!</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">8:00 am</div>
+        <div class="event-card">
+          <div class="event-title">Rope drop — Cars Land</div>
+          <div class="event-desc">Head straight to Radiator Springs Racers (LL, height 32") — stunning visuals, all ages, the undisputed crown jewel of DCA. Then Mater's Junkyard Jamboree and Luigi's Rollickin' Roadsters while Cars Land is still quiet.</div>
+          <div class="event-tags"><span class="tag tag-teal">All ages</span><span class="tag tag-teal">LL: RSR</span><span class="tag tag-dark">Height 32"</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">9:15 am</div>
+        <div class="event-card">
+          <div class="event-title">Avengers Campus — Web-Slingers + Guardians</div>
+          <div class="event-desc">Web-Slingers (LL) is a Spider-Man shooting ride and a massive hit with every age. Guardians of the Galaxy: Mission Breakout (LL, height 40") is the big thrill here — drops and rock music. Rider swap for under-40" kids.</div>
+          <div class="event-tags"><span class="tag tag-blue">Thrills</span><span class="tag tag-teal">LL: both</span><span class="tag tag-dark">Height 40" for Guardians</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">10:30 am</div>
+        <div class="event-card">
+          <div class="event-title">Toy Story Midway Mania + Incredicoaster</div>
+          <div class="event-desc">Toy Story Midway Mania (LL) is an interactive shooting game — all ages, universally adored, somehow never gets old. Incredicoaster (LL, height 48") for the older kids while littles wait with an adult using rider swap.</div>
+          <div class="event-tags"><span class="tag tag-teal">All ages</span><span class="tag tag-blue">Thrills</span><span class="tag tag-teal">LL: both</span><span class="tag tag-dark">Height 48" Incredicoaster</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label">Midday Hotel Break</div>
+    <div class="timeline">
+      <div class="event hotel">
+        <div class="event-time">12:00 pm</div>
+        <div class="event-card hotel-card">
+          <div class="event-title">Back to the hotel — rest & change</div>
+          <div class="event-desc">Perfect timing before the afternoon water ride. Kids nap, everyone recharges. Pack those dry clothes and ponchos back into your bag before returning to the park at 1:30. You'll thank yourself at 2:30.</div>
+          <div class="event-tags"><span class="tag tag-amber">On-site advantage</span><span class="tag tag-amber">Load up dry clothes</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Afternoon</div>
+    <div class="timeline">
+
+      <div class="event highlight">
+        <div class="event-time">1:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Soarin' Around the World</div>
+          <div class="event-desc">Use LL (height 40"). A breathtaking hang-glider simulation over iconic global landmarks — one of the most universally beloved rides in any Disney park worldwide. Rider swap for the very youngest.</div>
+          <div class="event-tags"><span class="tag tag-teal">All ages</span><span class="tag tag-teal">LL</span><span class="tag tag-dark">Height 40"</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">2:15 pm</div>
+        <div class="event-card">
+          <div class="event-title">Grizzly River Run</div>
+          <div class="event-desc">Height 42". Every. Single. Person. Gets. Soaked. Guaranteed. Kids will absolutely lose their minds. You packed dry clothes. This is the most exhilarating thing a group of 9 can do in 10 minutes.</div>
+          <div class="event-tags"><span class="tag tag-blue">Soaking fun</span><span class="tag tag-amber">You WILL get wet</span><span class="tag tag-dark">Height 42"</span></div>
+        </div>
+      </div>
+
+      <div class="event hotel">
+        <div class="event-time">3:00 pm</div>
+        <div class="event-card hotel-card">
+          <div class="event-title">Quick hotel change — 30 min only</div>
+          <div class="event-desc">Pop back and change into the dry clothes you packed. Nobody wants to sit through a nice dinner dripping wet. 30 minutes max — you're close enough to make this completely painless.</div>
+          <div class="event-tags"><span class="tag tag-amber">On-site advantage</span><span class="tag tag-amber">30 min max</span></div>
+        </div>
+      </div>
+
+      <div class="event normal">
+        <div class="event-time">3:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Pixar Pier stroll + re-rides</div>
+          <div class="event-desc">Wind-down lap of Pixar Pier. Jessie's Critter Carousel for the youngest. Grab Inside Out-themed treats at Bing Bong's Sweet Stuff. Use any remaining LL bookings for re-rides of the day's favorites.</div>
+          <div class="event-tags"><span class="tag tag-teal">Little ones</span><span class="tag tag-green">Treats</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label">Evening</div>
+    <div class="timeline">
+
+      <div class="event normal">
+        <div class="event-time">5:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">Dinner — Lamplight Lounge</div>
+          <div class="event-desc">Sit right on Pixar Pier with stunning lagoon views — reserve in advance. Wine Country Trattoria is a reliable casual backup if you can't get a reservation. Either way, eat by 5:30 so you can claim a World of Color spot.</div>
+          <div class="event-tags"><span class="tag tag-green">Dinner</span><span class="tag tag-amber">Reserve ahead</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">6:45 pm</div>
+        <div class="event-card">
+          <div class="event-title">Claim your World of Color viewing spot</div>
+          <div class="event-desc">Head to Paradise Gardens Lagoon 45–60 min before showtime. This is non-negotiable — latecomers get completely blocked views. Bring snacks and let kids run around the grass while you wait.</div>
+          <div class="event-tags"><span class="tag tag-coral">Arrive VERY early</span></div>
+        </div>
+      </div>
+
+      <div class="event highlight">
+        <div class="event-time">7:30 pm</div>
+        <div class="event-card">
+          <div class="event-title">World of Color — then walk home</div>
+          <div class="event-desc">DCA's signature nighttime spectacular — massive water screens, laser projections, fire pillars, and iconic Disney music. A breathtaking 22-minute send-off. Walk straight back to the hotel. Trip complete.</div>
+          <div class="event-tags"><span class="tag tag-teal">Grand finale</span><span class="tag tag-gold">Trip complete ✦</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /page-inner -->
+</div><!-- /day-ca -->
+
+<!-- ═══════════════════════════════════ TIPS ═══════════════════════════════════ -->
+<section class="tips-section">
+  <div class="tips-inner">
+    <h2>Tips for Both Days</h2>
+    <div class="tips-grid">
+
+      <div class="tip-card">
+        <div class="tip-card-label purple">⚡ Lightning Lane</div>
+        <p>Set a phone alarm for <strong>7:00am</strong> on each morning. Your first booking is the most critical — RSR on DCA day can sell out in under 5 minutes. Rebook your next LL the instant you tap into each ride.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-label purple">↕ Rider Swap</div>
+        <p>Available at every height-restricted ride. <strong>One adult stays with small kids</strong>, the rest ride, then the waiting adult gets immediate access without re-queuing. Use it at: Indiana Jones (46"), Space Mountain (40"), Matterhorn (35"), Guardians (40"), Incredicoaster (48"), Grizzly Run (42").</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-label amber">🏨 On-Site Hotel</div>
+        <p>Check if your hotel includes <strong>Early Entry</strong> (30 min before official open) — use it on Peter Pan (DL) or Radiator Springs Racers (DCA). Midday breaks are your superpower. Promise a <strong>hotel pool swim</strong> after each park day as the wind-down reward.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-label coral">👨‍👩‍👧‍👦 Group Logistics</div>
+        <p>Pick a <strong>fixed meeting spot</strong> at each park (Partners statue at DL, Buena Vista Street fountain at DCA). Consider splitting into two sub-groups at big rides to move faster. Bring your own <strong>snacks and refillable bottles</strong> — saves money and prevents hangry meltdowns between meals.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  Made with love for an unforgettable family adventure &nbsp;✦&nbsp; Check the Disneyland app for current show times, height requirements, and LL availability
+</footer>
+
+<script>
+  function switchDay(day) {
+    document.getElementById('day-dl').classList.remove('visible');
+    document.getElementById('day-ca').classList.remove('visible');
+    document.getElementById('tab-dl').className = 'day-tab';
+    document.getElementById('tab-ca').className = 'day-tab';
+    document.getElementById('day-' + day).classList.add('visible');
+    document.getElementById('tab-' + day).className = 'day-tab active-' + day;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
